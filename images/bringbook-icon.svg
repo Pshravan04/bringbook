@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="12" fill="#111827" />
+  <g transform="translate(10, 9)">
+    <!-- Left Leaf/Page -->
+    <path d="M14 2C8 2 2 7 2 15C2 23 8 28 14 28V2Z" fill="#16A34A" />
+    <!-- Right Leaf/Page -->
+    <path d="M14 2C20 2 26 7 26 15C26 23 20 28 14 28V2Z" fill="#22C55E" />
+    <!-- Center Spine Line -->
+    <path d="M14 2V28" stroke="#111827" stroke-width="2" stroke-linecap="round" />
+    <!-- Sprout Dot -->
+    <circle cx="14" cy="2" r="2.5" fill="#4ADE80" />
+  </g>
+</svg>

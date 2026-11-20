@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Confirmed — Welcome to Bringbook</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Exact Fonts: Plus Jakarta Sans + Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --forest:       #111827;
+      --forest-dark:  #0B2E22;
+      --ivory:        #FAF7F0;
+      --sand:         #F3EFE6;
+      --green:        #16A34A;
+      --gold:         #16A34A;
+      --gold-light:   #22C55E;
+      --ink:          #111827;
+      --slate:        #4B5563;
+      --mist:         #9CA3AF;
+      --rule:         rgba(0, 0, 0, 0.08);
+      --radius:       16px;
+      --radius-sm:    8px;
+      --radius-pill:  9999px;
+      --shadow:       0 12px 36px -12px rgba(17, 24, 39, 0.08);
+      --ff-serif:     'Playfair Display', Georgia, serif;
+      --ff-sans:      'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--ivory);
+      color: var(--slate);
+      font-family: var(--ff-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      border-bottom: 1px solid var(--rule);
+      background: var(--ivory);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 800px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .portal-badge {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(184, 138, 59, 0.12);
+      border: 1px solid rgba(184, 138, 59, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .receipt-container {
+      max-width: 680px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Success Hero Card */
+    .success-hero {
+      background: var(--ivory);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      position: relative;
+    }
+
+    .status-badge-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(15, 61, 46, 0.2);
+    }
+
+    .status-icon {
+      color: var(--ivory);
+      width: 32px;
+      height: 32px;
+    }
+
+    .success-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .success-headline {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .success-sub {
+      font-size: 1.0625rem;
+      color: var(--slate);
+      max-width: 48ch;
+    }
+
+    /* Drive Access Callout */
+    .access-portal-box {
+      width: 100%;
+      background: var(--sand);
+      border: 1px solid rgba(184, 138, 59, 0.35);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .portal-box-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .drive-link-mono {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      background: var(--ivory);
+      border: 1px solid var(--rule);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      color: var(--forest);
+      word-break: break-all;
+    }
+
+    .portal-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 500px) {
+      .portal-actions {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .btn-main-access {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--ink);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-main-access:hover {
+      background: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-copy-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--ivory);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-copy-link:hover {
+      background: #eee7d5;
+    }
+
+    /* Receipt Details Card */
+    .receipt-card {
+      background: var(--ivory);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .receipt-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .receipt-title {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .btn-print {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-print:hover {
+      background: var(--sand);
+    }
+
+    .receipt-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9375rem;
+      gap: 1rem;
+    }
+
+    .receipt-row .r-label {
+      color: var(--mist);
+      font-size: 0.875rem;
+    }
+
+    .receipt-row .r-val {
+      color: var(--ink);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .receipt-row.r-total {
+      border-top: 1px dashed var(--rule);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+      font-size: 1.0625rem;
+    }
+
+    .receipt-row.r-total .r-val {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem;
+      color: var(--forest);
+    }
+
+    /* Next Steps */
+    .steps-card {
+      background: var(--sand);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .steps-title {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      list-style: none;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .step-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--ivory);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-content h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-content p {
+      font-size: 0.875rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .step-content a {
+      color: var(--forest);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--mist);
+      background: var(--ivory);
+    }
+
+    footer a { color: var(--forest); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media print {
+      header, .btn-main-access, .btn-copy-link, .btn-print, .steps-card, footer { display: none !important; }
+      body, main { background: white !important; padding: 0 !important; }
+      .receipt-container, .receipt-card { box-shadow: none !important; border: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="brand-logo" aria-label="Bringbook Home">
+      <img src="images/bringbook-logo.svg" alt="bringbook" height="30" />
+    </a>
+    <span class="portal-badge">Verified Membership</span>
+  </div>
+</header>
+
+<main>
+  <div class="receipt-container">
+
+    <!-- Success Hero -->
+    <div class="success-hero">
+      <div class="status-badge-wrap" aria-hidden="true">
+        <svg class="status-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12.5l4.5 4.5 9.5-9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <span class="success-eyebrow">Payment Confirmed &middot; Lifetime Access Granted</span>
+      <h1 class="success-headline" id="welcome-name">Welcome to Bringbook.</h1>
+      <p class="success-sub">
+        Your lifetime pass has been activated. You now have unrestricted access to all 12,000+ eBooks across 16 categories in Google Drive.
+      </p>
+
+      <!-- Immediate Access Box -->
+      <div class="access-portal-box">
+        <span class="portal-box-label">Your Permanent Library Link</span>
+        <div class="drive-link-mono" id="drive-link-display">https://drive.google.com/drive/folders/YOUR_FOLDER_ID_HERE</div>
+
+        <div class="portal-actions">
+          <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID_HERE" class="btn-main-access" id="open-drive-btn" target="_blank" rel="noopener noreferrer">
+            <span>Open 12,000+ Books in Drive</span>
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18" aria-hidden="true">
+              <path d="M11 3h6v6M17 3L8 12M5 7H3v10h10v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button type="button" class="btn-copy-link" id="copy-btn">
+            <span id="copy-text">Copy Link</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Order Receipt -->
+    <div class="receipt-card">
+      <div class="receipt-card-header">
+        <h2 class="receipt-title">Transaction Receipt</h2>
+        <button type="button" class="btn-print" onclick="window.print()">Print Receipt</button>
+      </div>
+
+      <div class="receipt-rows">
+        <div class="receipt-row">
+          <span class="r-label">Payment ID:</span>
+          <span class="r-val" id="receipt-pid">pay_simulated</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Membership Holder:</span>
+          <span class="r-val" id="receipt-name">Member</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Delivery Email:</span>
+          <span class="r-val" id="receipt-email">Registered Email</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">WhatsApp Contact:</span>
+          <span class="r-val" id="receipt-phone">+91 &mdash;</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Plan &amp; Scope:</span>
+          <span class="r-val">12,000+ eBooks (16 Categories) &middot; Lifetime</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Transaction Date:</span>
+          <span class="r-val" id="receipt-date">Today</span>
+        </div>
+        <div class="receipt-row r-total">
+          <span class="r-label">Total Amount Paid:</span>
+          <span class="r-val">₹199 (All Taxes Included)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Steps Guide -->
+    <div class="steps-card">
+      <h3 class="steps-title">Recommended Next Steps</h3>
+      <ol class="steps-list">
+        <li class="step-item">
+          <span class="step-badge">1</span>
+          <div class="step-content">
+            <h4>Bookmark or Star the Google Drive Folder</h4>
+            <p>Click the <strong>Star</strong> icon in Google Drive so the entire library stays permanently on your home screen and Google Drive mobile app.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">2</span>
+          <div class="step-content">
+            <h4>Check Your Email for Backup Link</h4>
+            <p>A confirmation email containing your permanent Google Drive link and payment confirmation has been dispatched. If not in primary inbox, check Promotions/Spam.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-badge">3</span>
+          <div class="step-content">
+            <h4>Direct WhatsApp Support</h4>
+            <p>If you have questions or need assistance accessing a specific title, reach us on WhatsApp: <a href="https://wa.me/919XXXXXXXXX" id="wa-help-link" target="_blank" rel="noopener">WhatsApp Support (+91-9XXXXXXXXX)</a>.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Bringbook &middot; All Rights Reserved &middot; For support contact <a href="mailto:support@bringbook.in">support@bringbook.in</a></p>
+</footer>
+
+<script>
+  (function () {
+    // 1. Read Order Data from URL or Local Storage
+    const params = new URLSearchParams(window.location.search);
+    let order = null;
+
+    try {
+      const stored = sessionStorage.getItem('bringbook_latest_order') || sessionStorage.getItem('divy_latest_order') || localStorage.getItem('bringbook_latest_order') || localStorage.getItem('divy_latest_order');
+      if (stored) order = JSON.parse(stored);
+    } catch (_) {}
+
+    const pid   = params.get('pid')   || (order && order.paymentId) || 'pay_' + Math.random().toString(36).substring(2, 12);
+    const name  = params.get('name')  || (order && order.name)      || 'Valued Reader';
+    const email = params.get('email') || (order && order.email)     || 'Registered Member';
+    const phone = params.get('phone') || (order && order.phone)     || '';
+    const driveLink = (order && order.driveLink) || 'https://drive.google.com/drive/folders/YOUR_FOLDER_ID_HERE';
+
+    // 2. Populate Receipt DOM Elements
+    const nameEl = document.getElementById('welcome-name');
+    if (name && name !== 'Valued Reader' && nameEl) {
+      nameEl.textContent = 'Welcome, ' + name + '!';
+    }
+
+    const pidEl = document.getElementById('receipt-pid');
+    if (pidEl) pidEl.textContent = pid;
+
+    const rNameEl = document.getElementById('receipt-name');
+    if (rNameEl) rNameEl.textContent = name;
+
+    const rEmailEl = document.getElementById('receipt-email');
+    if (rEmailEl) rEmailEl.textContent = email;
+
+    const rPhoneEl = document.getElementById('receipt-phone');
+    if (rPhoneEl) rPhoneEl.textContent = phone ? '+91 ' + phone : 'Included';
+
+    const dateEl = document.getElementById('receipt-date');
+    if (dateEl) {
+      dateEl.textContent = new Date().toLocaleDateString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    // 3. Configure Drive Links
+    const driveDisplay = document.getElementById('drive-link-display');
+    const openBtn = document.getElementById('open-drive-btn');
+    if (driveDisplay) driveDisplay.textContent = driveLink;
+    if (openBtn) openBtn.href = driveLink;
+
+    // 4. Configure WhatsApp Link
+    const waLink = document.getElementById('wa-help-link');
+    if (waLink) {
+      const msg = encodeURIComponent(`Hi Bringbook, I just purchased the 12,000+ eBook collection for ₹199 (Payment ID: ${pid}). Please assist me.`);
+      waLink.href = `https://wa.me/919XXXXXXXXX?text=${msg}`;
+    }
+
+    // 5. Copy Link Functionality
+    const copyBtn = document.getElementById('copy-btn');
+    const copyText = document.getElementById('copy-text');
+    if (copyBtn && copyText) {
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(driveLink).then(function () {
+          copyText.textContent = '✓ Copied!';
+          setTimeout(function () { copyText.textContent = 'Copy Link'; }, 2500);
+        }).catch(function () {
+          // Fallback
+          prompt('Copy your Google Drive link:', driveLink);
+        });
+      });
+    }
+
+    // 6. Analytics Purchase Tracking Safeguard
+    if (typeof gtag === 'function' && pid) {
+      gtag('event', 'purchase', {
+        transaction_id: pid,
+        value: 199,
+        currency: 'INR'
+      });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'Purchase', { value: 199, currency: 'INR' });
+    }
+  })();
+</script>
+
+</body>
+</html>

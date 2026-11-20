@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 38" fill="none">
+  <!-- Elegant bookstore leaf/book icon -->
+  <g transform="translate(2, 4)">
+    <!-- Left Leaf/Page -->
+    <path d="M14 2C8 2 2 7 2 15C2 23 8 28 14 28V2Z" fill="#16A34A" />
+    <!-- Right Leaf/Page -->
+    <path d="M14 2C20 2 26 7 26 15C26 23 20 28 14 28V2Z" fill="#15803D" />
+    <!-- Center Spine Spine Line -->
+    <path d="M14 2V28" stroke="#FAF7F0" stroke-width="2" stroke-linecap="round" />
+    <!-- Tiny Sprout Accent -->
+    <circle cx="14" cy="2" r="2.5" fill="#22C55E" />
+  </g>
+  <!-- Wordmark in Plus Jakarta Sans -->
+  <text x="36" y="25" font-family="'Plus Jakarta Sans', -apple-system, system-ui, sans-serif" font-size="22" font-weight="700" fill="#111827" letter-spacing="-0.03em">bring<tspan fill="#16A34A">book</tspan></text>
+</svg>
